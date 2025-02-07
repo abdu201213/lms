@@ -1,0 +1,56 @@
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+lerna-debug.log*
+.log
+
+# Build artifacts
+dist/
+build/
+.out/
+.next/
+.vercel/
+server/
+
+# TypeScript cache & build outputs
+*.tsbuildinfo
+
+# Environment variables
+.env
+.env.test
+.env.production
+.env.local
+.env.development.local
+
+# Editor-specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+
+# MacOS system files
+.DS_Store
+
+# Other IDEs
+*.iml
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Coverage reports
+coverage/
+.nyc_output/
