@@ -1,5 +1,6 @@
-import mongoose, { Document, Schema } from "mongoose";
+import mongoose, {Model, Document, Schema } from "mongoose";
 import { string } from "zod";
+import bcrypt from "bcrypt";
 
 const emailRegexPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export interface IUser extends Document{
@@ -47,8 +48,21 @@ role:{
    default:"user"
 },
 isVerified:{
-   type:boolean,
+   type:Boolean,
    default:false
-}
+},
+courses:[{courseid:String}]
 
+},{timestamps:true});
+userSchema.pre<IUser>("save",async function(next){
+   if(!this.isModified("password")){
+      next();
+   }
+   this.password = await bcrypt.hash(this.password,10);
+   next();
 });
+userSchema.methods.comparePassword = async function(password:string){
+   return await bcrypt.compare(password,this.password);
+}
+const userModel:Model<IUser> = mongoose.model("User",userSchema);
+export default userModel;
